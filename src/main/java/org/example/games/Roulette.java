@@ -16,7 +16,7 @@ public class Roulette {
     }
 
     public void setWinningNumber() {
-        this.winningNumber = (int) ((Math.random() * 37));
+        this.winningNumber = (int) (Math.random() * 37);
     }
 
     public int betOnNumber(){

@@ -5,8 +5,8 @@ import java.util.Scanner;
 import static java.lang.Math.round;
 
 public class Money {
-    private Double balance = 500.00;
-    private Double currentBet;
+    private static Double balance = 500.00;
+    private static Double currentBet;
 
     public Double getBalance() {
         return balance;
@@ -40,6 +40,10 @@ public class Money {
             System.out.println("Bet some money!!!\nRemember that you can only bet the money you have.\nYou currently have " + getBalance() );
             newBet = getBetFromPlayer.nextDouble();
         }while(getBalance() < newBet);
+        while (getBetFromPlayer.hasNextLine()) {
+            getBetFromPlayer.nextLine();
+            break;
+        }
         bet(newBet);
     }
 

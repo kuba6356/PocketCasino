@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.games.Roulette;
-import org.example.menu.Menu;
+import org.example.games.crash.Crash;
 
 public class App {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws InterruptedException {
+        Crash crash = new Crash();
+        crash.crashGame();
     }
 }
