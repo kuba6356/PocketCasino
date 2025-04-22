@@ -1,11 +1,17 @@
 A Java-based casino simulator featuring Blackjack, Roulette, and Crash with a comprehensive test suite.
 
 Limitations
+
 Due to the use of java.util.Scanner while playing remember to:
+
 -only type what's on the screen 
+
 -never press Enter key before typing anything while playing Crash
+
 -Always use "," instead of "." when typing in a decimal amount
+
 otherwise it can and probably will result in a crash
+
 
 🎮 Features
 
@@ -113,7 +119,12 @@ src/
 │   └── coreLogic/       # Money tests
 └── pom.xml              # Maven config
 
+
 📌 TODO
+
 -Add a frontend
+
 -Swapout scanners for gui
+
 -add a DB storage
+
