@@ -89,8 +89,11 @@ Steps:
 bash
 
 git clone https://github.com/yourusername/casino-games-simulator.git
+
 cd casino-games-simulator
+
 mvn package
+
 java -jar target/casino-games.jar
 
 🛠️ Technologies Used
