@@ -65,5 +65,6 @@ public class Roulette {
             money.addWonBalance(COLOR_BET_MULTIPLIER);
             System.out.println("you won!!! \nYour current balance is " + money.getBalance());
         }
+        else System.out.println("YOU LOST " + money.getCurrentBet() + " \uD83D\uDE31");
     }
 }

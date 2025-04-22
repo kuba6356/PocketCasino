@@ -1,10 +1,15 @@
 package org.example.menu;
 
+import org.example.games.BlackJack;
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static java.lang.Math.nextUp;
+
 public class Menu {
+
     public void renderInitialMenuOptions(){
         System.out.println("-----------------------------------------------------");
         System.out.println("-----------------------------------------------------");
@@ -34,13 +39,32 @@ public class Menu {
     public Integer getMenuOption() {
         Scanner getPlayerInput = new Scanner(System.in);
         try {
-            Integer option = getPlayerInput.nextInt();
+            int option = getPlayerInput.nextInt();
             return option;
         }
         catch (InputMismatchException e){
             System.out.println("the value you provided is outside the scope or/and isn't matching the correct values," +
                     "\nPlease use one of the options shown before");
             return null;
+        }
+    }
+
+    public void gameMenu(){
+        renderGamesMenuOptions();
+        switch (getMenuOption()){
+            case 1 -> {
+                return;
+            }
+        }
+    }
+
+    public void initialMenu(){
+        renderInitialMenuOptions();
+
+        switch (getMenuOption()){
+            case 1 -> {
+                return;
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ public class Money {
     }
 
     public void addWonBalance(Double winMultiplier){
-        setBalance((double) (round((getBalance() + getCurrentBet() * winMultiplier)*100)/100));
+        setBalance((double) getBalance() + getCurrentBet() * winMultiplier);
     }
 
     public void bet(Double newBet){
@@ -39,7 +39,7 @@ public class Money {
         do{
             System.out.println("Bet some money!!!\nRemember that you can only bet the money you have.\nYou currently have " + getBalance() );
             newBet = getBetFromPlayer.nextDouble();
-        }while(getBalance() < newBet);
+        }while((getBalance() < newBet) && (newBet < 0));
         while (getBetFromPlayer.hasNextLine()) {
             getBetFromPlayer.nextLine();
             break;
