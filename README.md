@@ -90,7 +90,7 @@ bash
 
 git clone https://github.com/yourusername/casino-games-simulator.git
 
-cd casino-games-simulator
+cd PocketCasino
 
 mvn package
 
