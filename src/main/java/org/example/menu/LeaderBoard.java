@@ -20,8 +20,7 @@ public class LeaderBoard {
     public JSONArray leaderBoardArray() {
         try{
             JSONParser jsonParser = new JSONParser();
-            JSONArray leaderboardJSON = (JSONArray) jsonParser.parse(getLeaderBoardFile());
-            return leaderboardJSON;
+            return (JSONArray) jsonParser.parse(getLeaderBoardFile());
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +75,6 @@ public class LeaderBoard {
                 while (name.length() != 3){
                     name = nameGetter.nextLine();
                 }
-                nameGetter.close();
                 newLeaderBoard.add(new PlayerModel((long) (newLeaderBoard.size()+1), moneyEarned, name));
                 playerAdded = true;
                 newLeaderBoard.add(new PlayerModel((long) newLeaderBoard.size()+1, topPlayerMoneyEarned,  ((JSONObject) player).get("playerName").toString()));

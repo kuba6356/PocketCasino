@@ -31,23 +31,16 @@ public class Menu {
         System.out.println("-----------------------------------------------------");
     }
 
-    public Integer getMenuOption() throws IOException {
-        Scanner getMenuInput = new Scanner(System.in);
+    public Integer getMenuOption() {
+        Scanner getPlayerInput = new Scanner(System.in);
         try {
-            Integer option = getMenuInput.nextInt();
-            Process clearCommandLine = new ProcessBuilder("clear").start();
+            Integer option = getPlayerInput.nextInt();
             return option;
-        }
-        catch (IOException e){
-            throw new IOException("IO Exception in getMenuOption " + e);
         }
         catch (InputMismatchException e){
             System.out.println("the value you provided is outside the scope or/and isn't matching the correct values," +
                     "\nPlease use one of the options shown before");
             return null;
-        }
-        finally {
-            getMenuInput.close();
         }
     }
 }
