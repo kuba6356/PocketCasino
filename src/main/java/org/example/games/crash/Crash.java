@@ -71,6 +71,13 @@ public class Crash {
         didUserCashout = scanner.nextLine();
     }
 
+    public void softReset(){
+        multiplier = 1.00;
+        randomNumber = 0;
+        didCrashCrash = false;
+        didUserCashout = "";
+    }
+
     public void  crashGame() throws InterruptedException {
         money.checkMoneyBeforeBet();
         CrashCashoutMultiThreading crashCashoutMultiThreading = new CrashCashoutMultiThreading();
@@ -89,6 +96,6 @@ public class Crash {
             money.addWonBalance(multiplier);
             System.out.println("YOU WON\n Your new balance is " + money.getBalance());
         }
-
+        softReset();
     }
 }

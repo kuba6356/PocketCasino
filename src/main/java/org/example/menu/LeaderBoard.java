@@ -42,7 +42,7 @@ public class LeaderBoard {
         }
     }
 
-    public boolean hasPlayerEarnedEnough(int moneyEarned){
+    public boolean hasPlayerEarnedEnough(double moneyEarned){
         if(moneyEarned <= Integer.parseInt((((JSONObject)leaderBoardArray().getLast()).get("moneyEarned")).toString())){
             System.out.println("You didn't earn enough to be placed on the leaderBoard come back when u have more than " +
                     (((JSONObject)leaderBoardArray().getLast()).get("moneyEarned")));
@@ -54,19 +54,20 @@ public class LeaderBoard {
         ObjectMapper om = new ObjectMapper();
         om.writeValue( new File(LEADERBOARD_FILEPATH) , newLeaderBoard);
     }
-    public void addNewRecordToTheLeaderBoard(int moneyEarned) throws IOException {
+    public void addNewRecordToTheLeaderBoard(double moneyEarned) throws IOException {
         if(!hasPlayerEarnedEnough(moneyEarned)){
             return;
         }
         List<Object> newLeaderBoard = new ArrayList<>();
         boolean playerAdded = false;
         for(Object player : leaderBoardArray()){
-            if(player.equals(leaderBoardArray().getLast())){
+            if(Integer.parseInt(((JSONObject) player).get("place").toString()) >= 10){
                 break;
             }
             int topPlayerMoneyEarned = Integer.parseInt(((JSONObject) player).get("moneyEarned").toString());
             if(topPlayerMoneyEarned > moneyEarned || playerAdded){
-                newLeaderBoard.add(new PlayerModel((long) newLeaderBoard.size()+1, topPlayerMoneyEarned,  ((JSONObject) player).get("playerName").toString()));
+                newLeaderBoard.add(new PlayerModel((long) newLeaderBoard.size()+1, topPlayerMoneyEarned,
+                        ((JSONObject) player).get("playerName").toString()));
             }
             else {
                 System.out.println("Input 3 letters that will represent you in the leaderBoard");
@@ -75,11 +76,13 @@ public class LeaderBoard {
                 while (name.length() != 3){
                     name = nameGetter.nextLine();
                 }
-                newLeaderBoard.add(new PlayerModel((long) (newLeaderBoard.size()+1), moneyEarned, name));
+                newLeaderBoard.add(new PlayerModel((long) (newLeaderBoard.size()+1), (int) moneyEarned, name));
                 playerAdded = true;
-                newLeaderBoard.add(new PlayerModel((long) newLeaderBoard.size()+1, topPlayerMoneyEarned,  ((JSONObject) player).get("playerName").toString()));
+                newLeaderBoard.add(new PlayerModel((long) newLeaderBoard.size()+1, topPlayerMoneyEarned,
+                        ((JSONObject) player).get("playerName").toString()));
             }
         }
         overwriteLeaderBoardWithNew(newLeaderBoard);
+        printLeaderBoard();
     }
 }

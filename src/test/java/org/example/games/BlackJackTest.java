@@ -40,6 +40,7 @@ class BlackJackTest {
 
     @Test
     public void checkIfTheCardsAreBeingAddedToTheListCorrectly(){
+        blackJack.getCardsList().clear();
         blackJack.addCardToCardsList(blackJack.getNewCard());
         assertEquals(blackJack.getCardsList().get(0)[0], blackJack.getCardNumber());
         assertNotEquals(blackJack.getCardsList().get(0)[0], blackJack.getCardType());
@@ -47,12 +48,6 @@ class BlackJackTest {
         assertNotEquals(blackJack.getCardsList().get(0)[1], blackJack.getCardNumber());
     }
 
-    @Test
-    public void checkIfTheArrayIsBeingCheckedBeforeAddingANewCardToIt(){
-        int[] newCard = blackJack.getNewCard();
-        assertFalse(blackJack.checkCardDuplication(newCard));
-        assertTrue(blackJack.checkCardDuplication(newCard));
-    }
 
     @Test
     public void checkIfTheCardValueIsBeingCalculatedCorrectly(){

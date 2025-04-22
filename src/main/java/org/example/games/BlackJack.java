@@ -97,21 +97,20 @@ public class BlackJack {
         return scanner.nextInt();
     }
 
+    public void clearLists(){
+        playerCards.clear();
+        dealerCards.clear();
+        cardsList.clear();
+    }
+
     public void blackJackGame(){
         money.checkMoneyBeforeBet();
         addCardsToPlayer(getNewCard());
         int[] newCard = getNewCard();
-        while(playerCards.size() < 2 && dealerCards.size() < 1){
             while (checkCardDuplication(newCard)){
                 newCard = getNewCard();
             }
-            if(playerCards.size() > dealerCards.size()){
-                addCardToDealer(newCard);
-            }
-            else {
-                addCardsToPlayer(newCard);
-            }
-        }
+            addCardToDealer(newCard);
         System.out.println("Dealer card value is currently " + getCardValue(dealerCards));
         System.out.println("Your current card value is " + getCardValue(playerCards) + "\nPress 1 to get another card or 2 to to check");
         int choice = getChoiceFromPlayer();
@@ -128,7 +127,8 @@ public class BlackJack {
             choice = getChoiceFromPlayer();
         }
         if(getCardValue(playerCards) > 21){
-            System.out.println("BUSTED!!!\nTry Again");
+            System.out.println("OH NO "+ getCardValue(playerCards) +"\nBUSTED!!!\nTry Again");
+            clearLists();
             return;
         }
 
@@ -151,17 +151,20 @@ public class BlackJack {
             System.out.println("DEALER BUSTED!!!\n YOU WON");
             money.addWonBalance(WIN_MULTIPLIER);
             System.out.println("Your current balance is " + money.getBalance());
+            clearLists();
             return;
         }
-
-        if (getCardValue(playerCards) > getCardValue(dealerCards)) {
+        if(getCardValue(playerCards) == getCardValue(dealerCards)){
+            money.addWonBalance(1.00);
+            System.out.println("THIS WAS A DRAW!!! \nYour money has been returned to you \nYou currently have " + money.getBalance());
+        }
+        else if (getCardValue(playerCards) > getCardValue(dealerCards)) {
             money.addWonBalance(WIN_MULTIPLIER);
             System.out.println("YOU WON!!!\nYour current balance is " + money.getBalance());
-            return;
         }
         else{
             System.out.println("Dealer won this one");
-            return;
         }
+        clearLists();
     }
 }

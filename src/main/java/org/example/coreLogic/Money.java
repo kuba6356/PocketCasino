@@ -25,21 +25,22 @@ public class Money {
     }
 
     public void addWonBalance(Double winMultiplier){
-        setBalance((double) getBalance() + getCurrentBet() * winMultiplier);
+        setBalance((double) (round((getBalance() + getCurrentBet() * winMultiplier)*100))/100);
     }
 
     public void bet(Double newBet){
-        setBalance(getBalance() - newBet);
+        setBalance((double) (round((getBalance() - newBet)*100))/100);
+        System.out.println(getBalance());
         setCurrentBet(newBet);
     }
 
     public void checkMoneyBeforeBet(){
         Scanner getBetFromPlayer = new Scanner(System.in);
-        Double newBet;
+        Double newBet = 0.00;
         do{
             System.out.println("Bet some money!!!\nRemember that you can only bet the money you have.\nYou currently have " + getBalance() );
             newBet = getBetFromPlayer.nextDouble();
-        }while((getBalance() < newBet) && (newBet < 0));
+        }while(getBalance() < newBet || newBet < 0.01);
         while (getBetFromPlayer.hasNextLine()) {
             getBetFromPlayer.nextLine();
             break;

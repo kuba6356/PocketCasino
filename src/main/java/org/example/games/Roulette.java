@@ -23,7 +23,7 @@ public class Roulette {
         Scanner getNumberFromPlayer = new Scanner(System.in);
         Integer betNumber;
         do {
-            System.out.println("choose a number you want to bet on, odd are red even are black");
+            System.out.println("choose a number you want to bet on (1-36), odd are red even are black");
             betNumber = getNumberFromPlayer.nextInt();
         }while (betNumber < 0 || betNumber > 36);
         return betNumber;
